@@ -1,0 +1,137 @@
+{
+  "name": "fnrules",
+  "displayName": "AI Rules Manager",
+  "description": "Manage AI coding assistant rules (CLAUDE.md, .cursorrules, copilot-instructions.md) from one place.",
+  "version": "0.1.0",
+  "publisher": "fnrhombus",
+  "license": "MIT",
+  "author": "fnrhombus",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fnrhombus/fnrules"
+  },
+  "bugs": {
+    "url": "https://github.com/fnrhombus/fnrules/issues"
+  },
+  "homepage": "https://github.com/fnrhombus/fnrules#readme",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "ai",
+    "rules",
+    "claude",
+    "cursor",
+    "copilot",
+    "windsurf",
+    "codex",
+    "agents",
+    "config"
+  ],
+  "activationEvents": [
+    "onView:fnrulesExplorer"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "fnrules",
+          "title": "AI Rules",
+          "icon": "$(file-code)"
+        }
+      ]
+    },
+    "views": {
+      "fnrules": [
+        {
+          "id": "fnrulesExplorer",
+          "name": "AI Rules"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "fnrules.createClaudeMd",
+        "title": "Create CLAUDE.md",
+        "category": "AI Rules"
+      },
+      {
+        "command": "fnrules.createCursorrules",
+        "title": "Create .cursorrules",
+        "category": "AI Rules"
+      },
+      {
+        "command": "fnrules.createCopilotInstructions",
+        "title": "Create Copilot Instructions",
+        "category": "AI Rules"
+      },
+      {
+        "command": "fnrules.createWindsurfrules",
+        "title": "Create .windsurfrules",
+        "category": "AI Rules"
+      },
+      {
+        "command": "fnrules.createAgentsMd",
+        "title": "Create AGENTS.md",
+        "category": "AI Rules"
+      },
+      {
+        "command": "fnrules.refresh",
+        "title": "Refresh",
+        "category": "AI Rules",
+        "icon": "$(refresh)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "fnrules.refresh",
+          "when": "view == fnrulesExplorer",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "fnrules.createClaudeMd",
+          "when": "view == fnrulesExplorer && viewItem == unconfiguredTool-claude",
+          "group": "inline"
+        },
+        {
+          "command": "fnrules.createCursorrules",
+          "when": "view == fnrulesExplorer && viewItem == unconfiguredTool-cursor",
+          "group": "inline"
+        },
+        {
+          "command": "fnrules.createCopilotInstructions",
+          "when": "view == fnrulesExplorer && viewItem == unconfiguredTool-copilot",
+          "group": "inline"
+        },
+        {
+          "command": "fnrules.createWindsurfrules",
+          "when": "view == fnrulesExplorer && viewItem == unconfiguredTool-windsurf",
+          "group": "inline"
+        },
+        {
+          "command": "fnrules.createAgentsMd",
+          "when": "view == fnrulesExplorer && viewItem == unconfiguredTool-codex",
+          "group": "inline"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "package": "npx @vscode/vsce package --no-dependencies",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^22.0.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.0"
+  }
+}
